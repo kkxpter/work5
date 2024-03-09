@@ -6,7 +6,8 @@ export const router = express.Router();
 
 router.get("/", (req, res) => {
     const name = req.query.name;
-    const sql =`SELECT movie.* FROM movie
+    const sql =`SELECT movie.*,person.p_id AS starsid,person.p_name AS starsname,person.p_img AS starsimg,person.p_brithday AS starsbirthbay
+     FROM movie
     LEFT JOIN stars ON movie.m_id = stars.m_id_fk
     LEFT JOIN person ON stars.p_id_fk = person.p_id
     LEFT JOIN creators ON movie.m_id = creators.m_id_fk2
