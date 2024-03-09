@@ -6,14 +6,13 @@ export const router = express.Router();
 
 router.get("/", (req, res) => {
     const name = req.query.name;
-    const sql =`SELETE movie.*
-    FROM movie 
+    const sql =`SELECT movie.* FROM movie
     LEFT JOIN stars ON movie.m_id = stars.m_id_fk
-    LEFT JOIN person ON stars.p_id = person.p_id
+    LEFT JOIN person ON stars.p_id_fk = person.p_id
     LEFT JOIN creators ON movie.m_id = creators.m_id_fk2
     LEFT JOIN person AS creators_person ON creators.p_id_fk2 = creators_person.p_id
-    WHERER (movie.m_name IS NULL OR movie.name LIKE ?)
-    GROUP BY movie.m_id; `;
+    WHERE (movie.m_name IS NULL OR movie.m_name LIKE ?)
+    GROUP BY movie.m_id `;
 
     conn.query(sql,["%" + name + "%"],(err,result)=>{
       if(err){
