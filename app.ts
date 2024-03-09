@@ -21,6 +21,6 @@ app.use(
 app.use(bodyParser.text());
 app.use(bodyParser.json());
 app.use("/insert",insert);
-app.use("/deletee",deletee);
+app.use("/delete",deletee);
 app.use("/seach",movie);
 

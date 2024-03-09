@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     LEFT JOIN creators ON movie.m_id = creators.m_id_fk2
     LEFT JOIN person AS creators_person ON creators.p_id_fk2 = creators_person.p_id
     WHERE (movie.m_name IS NULL OR movie.m_name LIKE ?)
-    GROUP BY movie.m_id `;
+    GROUP BY moive.m_id `;
 
     conn.query(sql,["%" + name + "%"],(err,result)=>{
       if(err){
